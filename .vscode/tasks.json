@@ -1,0 +1,40 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "docker-build",
+			"label": "docker-build",
+			"platform": "python",
+			"dockerBuild": {
+				"tag": "pythonsample:latest",
+				"dockerfile": "${workspaceFolder}/Dockerfile",
+				"context": "${workspaceFolder}",
+				"pull": true
+			}
+		},
+		{
+			"type": "docker-run",
+			"label": "docker-run: debug",
+			"dependsOn": [
+				"docker-build"
+			],
+			"python": {
+				"file": "main.py",
+			},
+			"dockerRun": {
+				"ports": [
+					{
+						"containerPort": 8080,
+						"hostPort": 8080,
+						"protocol": "tcp"
+						}
+					],
+					"volumes": [{
+						"containerPath": "/var/log/myapp",
+						"localPath": "/var/log/myapp",
+						"permissions": "rw,z"
+					}]
+			}
+		}
+	]
+}

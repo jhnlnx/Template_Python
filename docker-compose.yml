@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  templatepython:
+    image: template_python
+    build:
+      context: .
+      dockerfile: ./Dockerfile
