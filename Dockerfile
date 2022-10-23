@@ -9,12 +9,10 @@ COPY requirements.txt .
 RUN python -m pip install -r requirements.txt
 
 WORKDIR /app
-COPY ./src /app
+COPY ./src/ /app
 
-RUN adduser -uid 1000 --disabled-password --gecos "" appuser 
-RUN chown appuser:appuser /app
+RUN adduser -uid 1000 --disabled-password --gecos "" appuser && chown -R appuser /app
 USER appuser
-
 
 # During debugging, this entry point will be changed
 CMD ["python", "main.py"]

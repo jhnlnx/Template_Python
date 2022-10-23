@@ -19,7 +19,7 @@
 				"docker-build"
 			],
 			"python": {
-				"file": "main.py",
+				"file": "main.py"
 			},
 			"dockerRun": {
 				"ports": [
@@ -35,6 +35,7 @@
 						"permissions": "rw,z"
 					}]
 			}
+
 		}
 	]
 }
